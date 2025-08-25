@@ -1,5 +1,4 @@
 from flask import Flask, request, render_template
-
 from sentence_transformers import SentenceTransformer, util
 
 app = Flask(__name__)
@@ -69,7 +68,6 @@ def index():
         recommendations = get_club_recommendations(user_likes, user_dislikes)
     return render_template("index.html", recommendations=recommendations)
 
-
-if __name__ == '__main__':
-    app.run(port=5050, debug=True)
-
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
